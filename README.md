@@ -208,6 +208,13 @@ Goal:
 ![img.png](img.png)
 
 
+This project is developed as part of ADA(BCS401) assignment under 
+
+Dr. Swathi K
+
+M.Tech, Ph.D
+
+Associate Professor 
 
 #  Authors
 
@@ -222,10 +229,3 @@ Dept of Computer Science And Engineering
 Jyothy Institute of Technology, Bangalore
 
 
-This project is developed as part of ADA(BCS401) assignment under 
-
-Dr. Swathi K
-
-M.Tech, Ph.D
-
-Associate Professor .
