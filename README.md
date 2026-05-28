@@ -221,9 +221,6 @@ Dept of Computer Science And Engineering
 
 Jyothy Institute of Technology, Bangalore
 
----
-
-#  License
 
 This project is developed as part of ADA(BCS401) assignment under 
 
