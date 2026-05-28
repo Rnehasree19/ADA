@@ -225,4 +225,9 @@ Jyothy Institute of Technology, Bangalore
 
 #  License
 
-This project is developed as part of ADA(BCS401) assignment.
+This project is developed as part of ADA(BCS401) assignment under 
+"""Dr. Swathi K
+
+M.Tech, Ph.D
+
+Associate Professor .
