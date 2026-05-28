@@ -216,6 +216,10 @@ M.Tech, Ph.D
 
 Associate Professor 
 
+Dept of Computer Science And Engineering
+
+Jyothy Institute of Technology, Bangalore
+
 #  Authors
 
 R Neha Sree(1JT24CS116)
@@ -224,8 +228,6 @@ Pooja K(1JT24CS105)
 
 Pooja U(1JT24CS106)
 
-Dept of Computer Science And Engineering
 
-Jyothy Institute of Technology, Bangalore
 
 
