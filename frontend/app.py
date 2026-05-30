@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Replace this after deploying FastAPI on Render
-API_URL = "https://your-backend-name.onrender.com/optimize-route"
+API_URL = "https://ada-1-mywf.onrender.com/optimize-route"
 
 st.set_page_config(
     page_title="Wedding Route Optimizer",
