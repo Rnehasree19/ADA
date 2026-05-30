@@ -34,7 +34,8 @@ Streamlit
 * Python
 
 ## Algorithms
-* Traveling Salesman Problem (TSP)
+* Dfs
+* Backtracking 
 
 ## APIs
 
