@@ -1,43 +1,31 @@
 import streamlit as st
 import requests
-import sys
-import os
 
-sys.path.append(
-    os.path.abspath("C:/Users/nagme/OneDrive/Desktop/ADA/backend")
-)
-
-API_URL = "http://127.0.0.1:8000/optimize-route"
+# Replace this after deploying FastAPI on Render
+API_URL = "https://your-backend-name.onrender.com/optimize-route"
 
 st.set_page_config(
-
     page_title="Wedding Route Optimizer",
-
     layout="centered"
 )
 
 st.title("Wedding Route Optimizer")
 
-st.markdown(
-    """
-    Optimize wedding delivery routes using:
-    - Geolocation
-    - Distance Calculation
-    - TSP Algorithm
-    - Google Maps Integration
-    """
-)
+st.markdown("""
+### Features
+- Geolocation
+- Distance Calculation
+- Traveling Salesman Problem (TSP)
+- Google Maps Integration
+""")
 
 start_location = st.text_input(
     "Enter Starting Location"
 )
 
 num_addresses = st.number_input(
-
     "Number of Delivery Addresses",
-
     min_value=1,
-
     step=1
 )
 
@@ -46,52 +34,42 @@ delivery_addresses = []
 st.subheader("Delivery Addresses")
 
 for i in range(num_addresses):
-
     address = st.text_input(
         f"Address {i + 1}",
-        key=i
+        key=f"address_{i}"
     )
 
-    if address:
-
+    if address.strip():
         delivery_addresses.append(address)
 
 if st.button("Optimize Route"):
 
-    if not start_location:
-
-        st.error(
-            "Please enter starting location."
-        )
+    if not start_location.strip():
+        st.error("Please enter starting location.")
 
     elif len(delivery_addresses) == 0:
-
-        st.error(
-            "Please enter delivery addresses."
-        )
+        st.error("Please enter at least one delivery address.")
 
     else:
 
         payload = {
-
             "start_location": start_location,
-
-            "delivery_addresses":
-                delivery_addresses
+            "delivery_addresses": delivery_addresses
         }
 
         try:
 
-            with st.spinner(
-                "Optimizing Route..."
-            ):
+            with st.spinner("Optimizing Route..."):
 
                 response = requests.post(
                     API_URL,
-                    json=payload
+                    json=payload,
+                    timeout=60
                 )
 
-            data = response.json()
+                response.raise_for_status()
+
+                data = response.json()
 
             if "error" in data:
 
@@ -103,40 +81,37 @@ if st.button("Optimize Route"):
                     "Route Optimized Successfully!"
                 )
 
-                st.subheader(
-                    "Optimized Route"
-                )
+                st.subheader("Optimized Route")
 
-                for i, location in enumerate(
-                    data["route"]
-                ):
+                for i, location in enumerate(data["route"]):
+                    st.write(f"{i + 1}. {location}")
 
-                    st.write(
-                        f"{i+1}. {location}"
-                    )
+                st.subheader("Minimum Distance")
 
-                st.subheader(
-                    "Minimum Distance"
-                )
+                st.info(f"{data['distance']} km")
 
-                st.info(
-                    f"{data['distance']} km"
-                )
-
-                st.subheader(
-                    "Google Maps Route"
-                )
+                st.subheader("Google Maps Route")
 
                 st.markdown(
-
-                    f"""
-                    [Open Route in Google Maps]
-                    ({data['maps_url']})
-                    """
+                    f"[Open Route in Google Maps]({data['maps_url']})"
                 )
 
-        except Exception as error:
-
+        except requests.exceptions.Timeout:
             st.error(
-                f"Backend connection failed:\n{error}"
+                "Request timed out. Backend took too long to respond."
+            )
+
+        except requests.exceptions.ConnectionError:
+            st.error(
+                "Cannot connect to backend. Check if FastAPI server is running."
+            )
+
+        except requests.exceptions.HTTPError as e:
+            st.error(
+                f"HTTP Error: {e}"
+            )
+
+        except Exception as e:
+            st.error(
+                f"Unexpected Error: {e}"
             )
