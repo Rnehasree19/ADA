@@ -34,11 +34,7 @@ Streamlit
 * Python
 
 ## Algorithms
-
-* DFS (Depth First Search)
-* Backtracking
 * Traveling Salesman Problem (TSP)
-* Haversine Formula
 
 ## APIs
 
