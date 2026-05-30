@@ -1,6 +1,4 @@
-```text id="tkfmpv"
-fastapi==0.112.2
-uvicorn==0.30.6
-requests==2.32.3
-starlette==0.37.2
-```
+fastapi
+uvicorn
+requests
+geopy
